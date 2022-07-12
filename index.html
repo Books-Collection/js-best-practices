@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+   <title>JavaScript Best Practices - ashishkumarkc.com</title>
+   <meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport" />
+   <meta name="keywords" content="adherence,advanced,ajax,al,all,amazing,analysis,and,android,angular,animation,api,app,application,applications,array,as,avoid,backend,based,basic,be,before,beginners,best,binding,book,books,braces,bracket,browser,build,by,c,c#,can,canvas,cbest,chart,charting,charts,clean,client,code,codes,coding,color,comment,comments,common,comparison,compiler,component,console,controls,convention,conventions,convert,converter,cool,create,creating,creator,crockford,css,d3,dashboard,data,database,datagrid,debugger,declaring,decode,design,developer,developers,developing,development,different,do,documentation,draw,drawing,easiest,easy,editor,effects,email,encode,end,error,ev,ever,example,examples,exception,exercises,express,fans,fastest,file,find,flower,for,foreach,form,format,formatter,framework,frameworks,front,frontend,function,get,global,good,google,graph,graphics,graphing,great,grid,gui,guidelines,handling,help,hosted,how,html,html5,i,in,int,interactive,interface,is,it,j,java,javascript,jquery,js,json,jsonobject,last,latest,learn,learning,length,lib,libraries,library,libs,light,lightweight,link,list,load,log,loop,make,me,menu,mobile,model,modern,most,mvc,mvvm,my,namespace,naming,native,network,new,notation,number,object,of,online,oop,open,page,paint,parameters,parse,parser,parts,pattern,patterns,performance,php,plot,plotting,plugin,plugins,popular,popularity,popup,post,practical,practice,practices,practise,pretty,print,programmer,programmers,programming,programs,projects,python,r,ranking,read,real,reporting,request,response,rest,return,right,router,sample,script,secure,security,server,side,simple,simplest,single,sites,size,slider,solutions,source,spa,sql,standard,standards,statistical,string,stringify,struct,structure,style,switch,syntax,table,tasks,technologies,ten,testing,text,the,think,through,time,to,tojson,toolkit,tools,top,touch,typescript,ui,usage,use,used,useful,user,using,utility,valid,var,variable,view,visualisation,visualization,want,way,web,webapp,webcode,webpage,website,websites,what,where,which,will,with,workflow,write,written,you">
+   <meta name="theme-color" content="#579ed3">
+   <link href='https://www.kcak11.com/favicon.ico' rel='icon' type='image/x-icon' />
+   <link rel="stylesheet" media="all" href="assets/css/app.css">
+   <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700" rel="stylesheet" type="text/css">
+   <style type="text/css">
+      .header_img {
+         position: relative;
+         top: -55px;
+         cursor: pointer;
+         -webkit-border-radius: 22px;
+         -moz-border-radius: 22px;
+         -ms-border-radius: 22px;
+         -o-border-radius: 22px;
+         border-radius: 22px;
+         border: 4px solid #579ed3;
+         padding-left: 11px;
+         padding-right: 11px;
+         -webkit-box-shadow: 0px 0px 22px #579ed3;
+         -moz-box-shadow: 0px 0px 22px #579ed3;
+         -ms-box-shadow: 0px 0px 22px #579ed3;
+         -o-box-shadow: 0px 0px 22px #579ed3;
+         box-shadow: 0px 0px 22px #579ed3;
+      }
+   </style>
+   <script type="text/javascript">
+      document.oncontextmenu = function() {
+         return false;
+      }
+      var loadAuthorSite = function() {
+         window.open("https://www.ashishkumarkc.com", "_akweb");
+      }
+   </script>
+</head>
+
+<body class="page-body topic-code">
+   <!--[if lt IE 10]><div class="legacy-ie-banner"><h2 class="legacy-ie-banner__title">Unsupported browser</h2><p class="legacy-ie-banner__text">This site was designed for modern browsers and tested with Internet Explorer version 10 and later. </p><p class="legacy-ie-banner__text">It may not look or work correctly on your browser. </p></div><![endif]-->
+   <div class="page-content topic-code" style="height: auto;">
+      <main class="content">
+         <article class="post article view view--loaded">
+            <div class="layout__content-with-sidebar">
+               <div class="post-body view view--loaded">
+                  <div class="post-body__body">
+                     <div class="post-body__content">
+                        <br /> <br /> <img src="assets/images/header.png" class="header_img" onclick="loadAuthorSite();" />
+                        <p>
+                           If you need help with JavaScript bug fixes, customization or anything else, be sure to visit <a href="https://www.ashishkumarkc.com" target="_akweb">ashishkumarkc.com</a>.
+                        </p>
+                        <hr>
+                        <h2 class="nolinks">
+                           <span class="sectionnum">1.</span> Use === Instead of == </h2>
+                        <p>
+                           JavaScript utilizes two different kinds of equality operators: <em>===</em> | <em>!==</em> and <em>==</em> | <em>!=</em> It is considered best practice to always use the former set when comparing.</p>
+                        <blockquote>
+                           <p> "If two operands are of the same type and value, then === produces true and !== produces false." - JavaScript: The Good Parts </p>
+                        </blockquote>
+                        <p>
+                           However, when working with <em>==</em> and <em>!=</em>, you'll run into issues when working with different types. In these cases, they'll try to coerce the values, unsuccessfully.</p>
+                        <hr>
+                        <h2 class="nolinks">
+                           <span class="sectionnum">2.</span> Eval = Bad</h2>
+                        <p>
+                           For those unfamiliar, the "eval" function gives us access to JavaScript's compiler. Essentially, we can execute a string's result by passing it as a parameter of "eval".</p>
+                        <p>Not only will this decrease your script's performance substantially, but it also poses a huge security risk because it grants far too much power to the passed in text. Avoid it! </p>
+                        <hr>
+                        <h2 class="nolinks">
+                           <span class="sectionnum">3.</span> Don't Use Short-Hand</h2>
+                        <p>
+                           Technically, you can get away with omitting most curly braces and semi-colons. Most browsers will correctly interpret the following:</p>
+                        <div>
+                           <div id="highlighter_502148" class="syntaxhighlighter noskimlinks noskimwords javascript">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                          <div class="line number2 index1 alt1">2</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="javascript keyword">if</code><code class="javascript plain">(someVariableExists)</code></div>
+                                             <div class="line number2 index1 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">x = </code><code class="javascript keyword">false</code></div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <p>However, consider this: </p>
+                        <div>
+                           <div id="highlighter_153405" class="syntaxhighlighter noskimlinks noskimwords javascript">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                          <div class="line number2 index1 alt1">2</div>
+                                          <div class="line number3 index2 alt2">3</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="javascript keyword">if</code><code class="javascript plain">(someVariableExists)</code></div>
+                                             <div class="line number2 index1 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">x = </code><code class="javascript keyword">false</code></div>
+                                             <div class="line number3 index2 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">anotherFunctionCall();</code></div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <p>
+                           One might think that the code above would be equivalent to:</p>
+                        <div>
+                           <div id="highlighter_868547" class="syntaxhighlighter noskimlinks noskimwords javascript">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                          <div class="line number2 index1 alt1">2</div>
+                                          <div class="line number3 index2 alt2">3</div>
+                                          <div class="line number4 index3 alt1">4</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="javascript keyword">if</code><code class="javascript plain">(someVariableExists) {</code></div>
+                                             <div class="line number2 index1 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">x = </code><code class="javascript keyword">false</code><code class="javascript plain">;</code></div>
+                                             <div class="line number3 index2 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">anotherFunctionCall();</code></div>
+                                             <div class="line number4 index3 alt1"><code class="javascript plain">}</code></div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <p>
+                           Unfortunately, he'd be wrong. In reality, it means:</p>
+                        <div>
+                           <div id="highlighter_784053" class="syntaxhighlighter noskimlinks noskimwords javascript">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                          <div class="line number2 index1 alt1">2</div>
+                                          <div class="line number3 index2 alt2">3</div>
+                                          <div class="line number4 index3 alt1">4</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="javascript keyword">if</code><code class="javascript plain">(someVariableExists) {</code></div>
+                                             <div class="line number2 index1 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">x = </code><code class="javascript keyword">false</code><code class="javascript plain">;</code></div>
+                                             <div class="line number3 index2 alt2"><code class="javascript plain">}</code></div>
+                                             <div class="line number4 index3 alt1"><code class="javascript plain">anotherFunctionCall();</code></div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <p>
+                           As you'll notice, the indentation mimics the functionality of the curly brace. Needless to say, this is a terrible practice that should be avoided at all costs. The only time that curly braces should be omitted is with one-liners, and even this is a highly
+                           debated topic.</p>
+                        <div>
+                           <div id="highlighter_476996" class="syntaxhighlighter noskimlinks noskimwords javascript">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="javascript keyword">if</code><code class="javascript plain">(2 + 2 === 4) </code><code class="javascript keyword">return</code> <code class="javascript string">'nicely done'</code><code class="javascript plain">;</code></div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <h4 class="nolinks">Always Consider the Future </h4>
+                        <p>
+                           What if, at a later date, you need to add more commands to this if statement. In order to do so, you would need to rewrite this block of code. Bottom line - tread with caution when omitting. </p>
+                        <hr>
+                        <h2 class="nolinks">
+                           <span class="sectionnum">4.</span> Utilize JS Lint </h2>
+                        <p>
+                           <a href="http://www.jslint.com/" target="_blank">JSLint</a> is a debugger written by Douglas Crockford. Simply paste in your script, and it'll quickly scan for any noticeable issues and errors in your code.</p>
+                        <blockquote>
+                           <p>
+                              "JSLint takes a JavaScript source and scans it. If it finds a problem, it returns a message describing the problem and an approximate location within the source. The problem is not necessarily a syntax error, although it often is. JSLint looks at some
+                              style conventions as well as structural problems. It does not prove that your program is correct. It just provides another set of eyes to help spot problems." <br> - JSLint Documentation</p>
+                        </blockquote>
+                        <p>
+                           Before signing off on a script, run it through JSLint just to be sure that you haven't made any mindless mistakes.</p>
+                        <hr>
+                        <hr>
+                        <h2 class="nolinks">
+                           <span class="sectionnum">5.</span> Place Scripts at the Bottom of Your Page </h2>
+                        <p>This tip has already been recommended in the previous article in this series. As it's highly appropriate though, I'll paste in the information. </p>
+                        <div>
+                           <img alt="Place JS at bottom" src="assets/images/js_bottom.png">
+                        </div>
+                        <p>
+                           Remember -- the primary goal is to make the page load as quickly as possible for the user. When loading a script, the browser can't continue on until the entire file has been loaded. Thus, the user will have to wait longer before noticing any progress.</p>
+                        <p>
+                           If you have JS files whose only purpose is to add functionality -- for example, after a button is clicked -- go ahead and place those files at the bottom, just before the closing body tag. This is absolutely a best practice.</p>
+                        <h4 class="nolinks">Better</h4>
+                        <div>
+                           <div id="highlighter_138643" class="syntaxhighlighter noskimlinks noskimwords html">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                          <div class="line number2 index1 alt1">2</div>
+                                          <div class="line number3 index2 alt2">3</div>
+                                          <div class="line number4 index3 alt1">4</div>
+                                          <div class="line number5 index4 alt2">5</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="html plain">&lt;</code><code class="html keyword">p</code><code class="html plain">&gt;And now you know my favorite kinds of corn. &lt;/</code><code class="html keyword">p</code><code class="html plain">&gt;</code></div>
+                                             <div class="line number2 index1 alt1"><code class="html plain">&lt;</code><code class="html keyword">script</code> <code class="html color1">type</code><code class="html plain">=</code><code class="html string">"text/javascript"</code> <code class="html color1">src</code>
+                                                <code class="html plain">=</code><code class="html string">"path/to/file.js"</code><code class="html plain">&gt;&lt;/</code><code class="html keyword">script</code><code class="html plain">&gt;</code></div>
+                                             <div class="line number3 index2 alt2"><code class="html plain">&lt;</code><code class="html keyword">script</code> <code class="html color1">type</code><code class="html plain">=</code><code class="html string">"text/javascript"</code> <code class="html color1">src</code>
+                                                <code class="html plain">=</code><code class="html string">"path/to/anotherFile.js"</code><code class="html plain">&gt;&lt;/</code><code class="html keyword">script</code><code class="html plain">&gt;</code></div>
+                                             <div class="line number4 index3 alt1"><code class="html plain">&lt;/</code><code class="html keyword">body</code><code class="html plain">&gt;</code></div>
+                                             <div class="line number5 index4 alt2"><code class="html plain">&lt;/</code><code class="html keyword">html</code><code class="html plain">&gt;</code></div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <hr>
+                        <h2 class="nolinks">
+                           <span class="sectionnum">6.</span> Declare Variables Outside of the For Statement </h2>
+                        <p>
+                           When executing lengthy "for" statements, don't make the engine work any harder than it must. For example:</p>
+                        <h4 class="nolinks">Bad</h4>
+                        <div>
+                           <div id="highlighter_901062" class="syntaxhighlighter noskimlinks noskimwords javascript">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                          <div class="line number2 index1 alt1">2</div>
+                                          <div class="line number3 index2 alt2">3</div>
+                                          <div class="line number4 index3 alt1">4</div>
+                                          <div class="line number5 index4 alt2">5</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="javascript keyword">for</code><code class="javascript plain">(</code><code class="javascript keyword">var</code> <code class="javascript plain">i = 0; i &lt; someArray.length; i++) {</code></div>
+                                             <div class="line number2 index1 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;</code><code class="javascript keyword">var</code> <code class="javascript plain">container = document.getElementById(</code><code class="javascript string">'container'</code>
+                                                <code class="javascript plain">);</code>
+                                             </div>
+                                             <div class="line number3 index2 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">container.innerHtml += </code><code class="javascript string">'my number: '</code> <code class="javascript plain">+ i;</code></div>
+                                             <div class="line number4 index3 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">console.log(i);</code></div>
+                                             <div class="line number5 index4 alt2"><code class="javascript plain">}</code></div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <p>
+                           Notice how we must determine the length of the array for each iteration, and how we traverse the dom to find the "container" element each time -- highly inefficient!</p>
+                        <h4 class="nolinks">Better</h4>
+                        <div>
+                           <div id="highlighter_76581" class="syntaxhighlighter noskimlinks noskimwords javascript">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                          <div class="line number2 index1 alt1">2</div>
+                                          <div class="line number3 index2 alt2">3</div>
+                                          <div class="line number4 index3 alt1">4</div>
+                                          <div class="line number5 index4 alt2">5</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="javascript keyword">var</code> <code class="javascript plain">container = document.getElementById(</code><code class="javascript string">'container'</code><code class="javascript plain">);</code></div>
+                                             <div class="line number2 index1 alt1"><code class="javascript keyword">for</code><code class="javascript plain">(</code><code class="javascript keyword">var</code> <code class="javascript plain">i = 0, len = someArray.length; i &lt; len;&nbsp; i++) {</code></div>
+                                             <div class="line number3 index2 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">container.innerHtml += </code><code class="javascript string">'my number: '</code> <code class="javascript plain">+ i;</code></div>
+                                             <div class="line number4 index3 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">console.log(i);</code></div>
+                                             <div class="line number5 index4 alt2"><code class="javascript plain">}</code></div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <p>
+                           Bonus points to the person who leaves a comment showing us how we can further improve the code block above.</p>
+                        <hr>
+                        <h2 class="nolinks">
+                           <span class="sectionnum">7.</span> The Fastest Way to Build a String </h2>
+                        <p>
+                           Don't always reach for your handy-dandy "for" statement when you need to loop through an array or object. Be creative and find the quickest solution for the job at hand.</p>
+                        <div>
+                           <div id="highlighter_359359" class="syntaxhighlighter noskimlinks noskimwords javascript">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                          <div class="line number2 index1 alt1">2</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="javascript keyword">var</code> <code class="javascript plain">arr = [</code><code class="javascript string">'item 1'</code><code class="javascript plain">, </code><code class="javascript string">'item 2'</code>
+                                                <code class="javascript plain">, </code><code class="javascript string">'item 3'</code><code class="javascript plain">, ...];</code></div>
+                                             <div class="line number2 index1 alt1"><code class="javascript keyword">var</code> <code class="javascript plain">list = </code><code class="javascript string">'&lt;ul&gt;&lt;li&gt;'</code> <code class="javascript plain">+ arr.join(</code>
+                                                <code
+                                                   class="javascript string">'&lt;/li&gt;&lt;li&gt;'</code>
+                                                   <code class="javascript plain">) + </code><code class="javascript string">'&lt;/li&gt;&lt;/ul&gt;'</code><code class="javascript plain">;</code></div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <blockquote>
+                           <p>
+                              I won’t bore you with benchmarks; you’ll just have to believe me (or test for yourself) - this is by far the fastest method!</p>
+                           <p>
+                              Using native methods (like join()), regardless of what’s going on behind the abstraction layer, is usually much faster than any non-native alternative. <br> - James Padolsey, <span class="skimlinks-unlinked">james.padolsey.com</span></p>
+                        </blockquote>
+                        <hr>
+                        <h2 class="nolinks">
+                           <span class="sectionnum">8.</span> Reduce Globals </h2>
+                        <blockquote>
+                           <p>
+                              "By reducing your global footprint to a single name, you significantly reduce the chance of bad interactions with other applications, widgets, or libraries." <br> - Douglas Crockford</p>
+                        </blockquote>
+                        <div>
+                           <div id="highlighter_917946" class="syntaxhighlighter noskimlinks noskimwords javascript">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                          <div class="line number2 index1 alt1">2</div>
+                                          <div class="line number3 index2 alt2">3</div>
+                                          <div class="line number4 index3 alt1">4</div>
+                                          <div class="line number5 index4 alt2">5</div>
+                                          <div class="line number6 index5 alt1">6</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="javascript keyword">var</code> <code class="javascript plain">name = </code><code class="javascript string">'Jeffrey'</code><code class="javascript plain">;</code></div>
+                                             <div class="line number2 index1 alt1"><code class="javascript keyword">var</code> <code class="javascript plain">lastName = </code><code class="javascript string">'Way'</code><code class="javascript plain">;</code></div>
+                                             <div class="line number3 index2 alt2">&nbsp;</div>
+                                             <div class="line number4 index3 alt1"><code class="javascript keyword">function</code> <code class="javascript plain">doSomething() {...}</code></div>
+                                             <div class="line number5 index4 alt2">&nbsp;</div>
+                                             <div class="line number6 index5 alt1"><code class="javascript plain">console.log(name); </code><code class="javascript comments">// Jeffrey -- or window.name</code></div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <h4 class="nolinks">Better</h4>
+                        <div>
+                           <div id="highlighter_67178" class="syntaxhighlighter noskimlinks noskimwords javascript">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                          <div class="line number2 index1 alt1">2</div>
+                                          <div class="line number3 index2 alt2">3</div>
+                                          <div class="line number4 index3 alt1">4</div>
+                                          <div class="line number5 index4 alt2">5</div>
+                                          <div class="line number6 index5 alt1">6</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="javascript keyword">var</code> <code class="javascript plain">DudeNameSpace = {</code></div>
+                                             <div class="line number2 index1 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">name : </code><code class="javascript string">'Jeffrey'</code><code class="javascript plain">,</code></div>
+                                             <div class="line number3 index2 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">lastName : </code><code class="javascript string">'Way'</code><code class="javascript plain">,</code></div>
+                                             <div class="line number4 index3 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">doSomething : </code><code class="javascript keyword">function</code><code class="javascript plain">() {...}</code></div>
+                                             <div class="line number5 index4 alt2"><code class="javascript plain">}</code></div>
+                                             <div class="line number6 index5 alt1"><code class="javascript plain">console.log(DudeNameSpace.name); </code><code class="javascript comments">// Jeffrey</code></div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <p>
+                           Notice how we've "reduced our footprint" to just the ridiculously named "DudeNameSpace" object.</p>
+                        <hr>
+                        <h2 class="nolinks">
+                           <span class="sectionnum">9.</span> Comment Your Code </h2>
+                        <p>
+                           It might seem unnecessary at first, but trust me, you WANT to comment your code as best as possible. What happens when you return to the project months later, only to find that you can't easily remember what your line of thinking was. Or, what if one
+                           of your colleagues needs to revise your code? Always, always comment important sections of your code.</p>
+                        <div>
+                           <div id="highlighter_299881" class="syntaxhighlighter noskimlinks noskimwords javascript">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                          <div class="line number2 index1 alt1">2</div>
+                                          <div class="line number3 index2 alt2">3</div>
+                                          <div class="line number4 index3 alt1">4</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="javascript comments">// Cycle through array and echo out each name. </code></div>
+                                             <div class="line number2 index1 alt1"><code class="javascript keyword">for</code><code class="javascript plain">(</code><code class="javascript keyword">var</code> <code class="javascript plain">i = 0, len = array.length; i &lt; len; i++) {</code></div>
+                                             <div class="line number3 index2 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">console.log(array[i]);</code></div>
+                                             <div class="line number4 index3 alt1"><code class="javascript plain">}</code></div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <hr>
+                        <h2 class="nolinks">
+                           <span class="sectionnum">10.</span> Embrace Progressive Enhancement </h2>
+                        <p>
+                           Always compensate for when JavaScript is disabled. It might be tempting to think, "The majority of my viewers have JavaScript enabled, so I won't worry about it." However, this would be a huge mistake.</p>
+                        <p>
+                           Have you taken a moment to view your beautiful slider with JavaScript turned off? (<a href="https://addons.mozilla.org/en-US/firefox/addon/60" target="_blank">Download</a> the Web Developer Toolbar for an easy way to do so.)
+                           It might break your site completely. As a rule of thumb, design your site assuming that JavaScript will be disabled. Then, once you've done so, begin to <strong>progressively enhance</strong> your layout!</p>
+                        <hr>
+                        <h2 class="nolinks">
+                           <span class="sectionnum">11.</span> Don't Pass a String to "SetInterval" or "SetTimeOut" </h2>
+                        <p>
+                           Consider the following code:</p>
+                        <div>
+                           <div id="highlighter_920470" class="syntaxhighlighter noskimlinks noskimwords javascript">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                          <div class="line number2 index1 alt1">2</div>
+                                          <div class="line number3 index2 alt2">3</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="javascript plain">setInterval(</code></div>
+                                             <div class="line number2 index1 alt1"><code class="javascript string">"document.getElementById('container').innerHTML += 'My new number: ' + i"</code><code class="javascript plain">, 3000</code></div>
+                                             <div class="line number3 index2 alt2"><code class="javascript plain">);</code></div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <p>
+                           Not only is this code inefficient, but it also functions in the same way as the "eval" function would. <strong>Never pass a string to SetInterval and SetTimeOut.</strong> Instead, pass a function name.</p>
+                        <div>
+                           <div id="highlighter_623942" class="syntaxhighlighter noskimlinks noskimwords javascript">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="javascript plain">setInterval(someFunction, 3000);</code></div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <hr>
+                        <h2 class="nolinks">
+                           <span class="sectionnum">12.</span> Don't Use the "With" Statement </h2>
+                        <p>
+                           At first glance, "With" statements seem like a smart idea. The basic concept is that they can be used to provide a shorthand for accessing deeply nested objects. For example...</p>
+                        <div>
+                           <div id="highlighter_730882" class="syntaxhighlighter noskimlinks noskimwords javascript">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                          <div class="line number2 index1 alt1">2</div>
+                                          <div class="line number3 index2 alt2">3</div>
+                                          <div class="line number4 index3 alt1">4</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="javascript keyword">with</code> <code class="javascript plain">(being.person.man.bodyparts) {</code></div>
+                                             <div class="line number2 index1 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">arms = </code><code class="javascript keyword">true</code><code class="javascript plain">;</code></div>
+                                             <div class="line number3 index2 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">legs = </code><code class="javascript keyword">true</code><code class="javascript plain">;</code></div>
+                                             <div class="line number4 index3 alt1"><code class="javascript plain">}</code></div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <p>-- instead of -- </p>
+                        <div>
+                           <div id="highlighter_511091" class="syntaxhighlighter noskimlinks noskimwords javascript">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                          <div class="line number2 index1 alt1">2</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="javascript plain">being.person.man.bodyparts.arms = </code><code class="javascript keyword">true</code><code class="javascript plain">;</code></div>
+                                             <div class="line number2 index1 alt1"><code class="javascript plain">being.person.man.bodyparts.legs= </code><code class="javascript keyword">true</code><code class="javascript plain">;</code></div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <p>
+                           Unfortunately, after some testing, it was found that they "behave very badly when setting new members." Instead, you should use var.</p>
+                        <div>
+                           <div id="highlighter_458918" class="syntaxhighlighter noskimlinks noskimwords javascript">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                          <div class="line number2 index1 alt1">2</div>
+                                          <div class="line number3 index2 alt2">3</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="javascript keyword">var</code> <code class="javascript plain">o = being.person.man.bodyparts;</code></div>
+                                             <div class="line number2 index1 alt1"><code class="javascript plain">o.arms = </code><code class="javascript keyword">true</code><code class="javascript plain">;</code></div>
+                                             <div class="line number3 index2 alt2"><code class="javascript plain">o.legs = </code><code class="javascript keyword">true</code><code class="javascript plain">;</code></div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <hr>
+                        <h2 class="nolinks">
+                           <span class="sectionnum">13.</span> Use {} Instead of New Object() </h2>
+                        <p>
+                           There are multiple ways to create objects in JavaScript. Perhaps the more traditional method is to use the "new" constructor, like so: </p>
+                        <div>
+                           <div id="highlighter_958458" class="syntaxhighlighter noskimlinks noskimwords javascript">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                          <div class="line number2 index1 alt1">2</div>
+                                          <div class="line number3 index2 alt2">3</div>
+                                          <div class="line number4 index3 alt1">4</div>
+                                          <div class="line number5 index4 alt2">5</div>
+                                          <div class="line number6 index5 alt1">6</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="javascript keyword">var</code> <code class="javascript plain">o = </code><code class="javascript keyword">new</code> <code class="javascript plain">Object();</code></div>
+                                             <div class="line number2 index1 alt1"><code class="javascript plain">o.name = </code><code class="javascript string">'Jeffrey'</code><code class="javascript plain">;</code></div>
+                                             <div class="line number3 index2 alt2"><code class="javascript plain">o.lastName = </code><code class="javascript string">'Way'</code><code class="javascript plain">;</code></div>
+                                             <div class="line number4 index3 alt1"><code class="javascript plain">o.someFunction = </code><code class="javascript keyword">function</code><code class="javascript plain">() {</code></div>
+                                             <div class="line number5 index4 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">console.log(</code><code class="javascript keyword">this</code><code class="javascript plain">.name);</code></div>
+                                             <div class="line number6 index5 alt1"><code class="javascript plain">}</code></div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <p>
+                           However, this method receives the "bad practice" stamp without actually being so. Instead, I recommend that you use the much more robust object literal method.</p>
+                        <h4 class="nolinks">Better</h4>
+                        <div>
+                           <div id="highlighter_198900" class="syntaxhighlighter noskimlinks noskimwords javascript">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                          <div class="line number2 index1 alt1">2</div>
+                                          <div class="line number3 index2 alt2">3</div>
+                                          <div class="line number4 index3 alt1">4</div>
+                                          <div class="line number5 index4 alt2">5</div>
+                                          <div class="line number6 index5 alt1">6</div>
+                                          <div class="line number7 index6 alt2">7</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="javascript keyword">var</code> <code class="javascript plain">o = {</code></div>
+                                             <div class="line number2 index1 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">name: </code><code class="javascript string">'Jeffrey'</code><code class="javascript plain">,</code></div>
+                                             <div class="line number3 index2 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">lastName = </code><code class="javascript string">'Way'</code><code class="javascript plain">,</code></div>
+                                             <div class="line number4 index3 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">someFunction : </code><code class="javascript keyword">function</code><code class="javascript plain">() {</code></div>
+                                             <div class="line number5 index4 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">console.log(</code><code class="javascript keyword">this</code><code class="javascript plain">.name);</code></div>
+                                             <div class="line number6 index5 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">}</code></div>
+                                             <div class="line number7 index6 alt2"><code class="javascript plain">};</code></div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <p>
+                           Note that if you simply want to create an empty object, {} will do the trick.</p>
+                        <div>
+                           <div id="highlighter_480421" class="syntaxhighlighter noskimlinks noskimwords javascript">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="javascript keyword">var</code> <code class="javascript plain">o = {};</code></div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <blockquote>
+                           <p>
+                              "Objects literals enable us to write code that supports lots of features yet still make it a relatively straightforward for the implementers of our code. No need to invoke constructors directly or maintain the correct order of arguments passed to functions,
+                              etc." - <a href="http://www.dyn-web.com/tutorials/obj_lit.php" target="_blank">dyn-web.com</a></p>
+                        </blockquote>
+                        <hr>
+                        <h2 class="nolinks">
+                           <span class="sectionnum">14.</span> Use [] Instead of New Array() </h2>
+                        <p>
+                           The same applies for creating a new array.</p>
+                        <h4 class="nolinks">Okay</h4>
+                        <div>
+                           <div id="highlighter_280219" class="syntaxhighlighter noskimlinks noskimwords javascript">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                          <div class="line number2 index1 alt1">2</div>
+                                          <div class="line number3 index2 alt2">3</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="javascript keyword">var</code> <code class="javascript plain">a = </code><code class="javascript keyword">new</code> <code class="javascript plain">Array();</code></div>
+                                             <div class="line number2 index1 alt1"><code class="javascript plain">a[0] = </code><code class="javascript string">"Joe"</code><code class="javascript plain">;</code></div>
+                                             <div class="line number3 index2 alt2"><code class="javascript plain">a[1] = </code><code class="javascript string">'Plumber'</code><code class="javascript plain">;</code></div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <h4 class="nolinks">Better</h4>
+                        <div>
+                           <div id="highlighter_207035" class="syntaxhighlighter noskimlinks noskimwords javascript">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="javascript keyword">var</code> <code class="javascript plain">a = [</code><code class="javascript string">'Joe'</code><code class="javascript plain">,</code><code class="javascript string">'Plumber'</code>
+                                                <code
+                                                   class="javascript plain">];</code>
+                                             </div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <blockquote>
+                           <p>
+                              "A common error in JavaScript programs is to use an object when an array is required or an array when an object is required. The rule is simple: when the property names are small sequential integers, you should use an array. Otherwise, use an object."
+                              - Douglas Crockford</p>
+                        </blockquote>
+                        <hr>
+                        <h2 class="nolinks">
+                           <span class="sectionnum">15.</span> Long List of Variables? Omit the "Var" Keyword and Use Commas Instead </h2>
+                        <div>
+                           <div id="highlighter_874296" class="syntaxhighlighter noskimlinks noskimwords javascript">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                          <div class="line number2 index1 alt1">2</div>
+                                          <div class="line number3 index2 alt2">3</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="javascript keyword">var</code> <code class="javascript plain">someItem = </code><code class="javascript string">'some string'</code><code class="javascript plain">;</code></div>
+                                             <div class="line number2 index1 alt1"><code class="javascript keyword">var</code> <code class="javascript plain">anotherItem = </code><code class="javascript string">'another string'</code><code class="javascript plain">;</code></div>
+                                             <div class="line number3 index2 alt2"><code class="javascript keyword">var</code> <code class="javascript plain">oneMoreItem = </code><code class="javascript string">'one more string'</code><code class="javascript plain">;</code></div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <h4 class="nolinks">Better</h4>
+                        <div>
+                           <div id="highlighter_300441" class="syntaxhighlighter noskimlinks noskimwords javascript">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                          <div class="line number2 index1 alt1">2</div>
+                                          <div class="line number3 index2 alt2">3</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="javascript keyword">var</code> <code class="javascript plain">someItem = </code><code class="javascript string">'some string'</code><code class="javascript plain">,</code></div>
+                                             <div class="line number2 index1 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">anotherItem = </code><code class="javascript string">'another string'</code><code class="javascript plain">,</code></div>
+                                             <div class="line number3 index2 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">oneMoreItem = </code><code class="javascript string">'one more string'</code><code class="javascript plain">;</code></div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <p>...Should be rather self-explanatory. I doubt there's any real speed improvements here, but it cleans up your code a bit. </p>
+                        <hr>
+                        <h2 class="nolinks">
+                           <span class="sectionnum">17.</span> Always, Always Use Semicolons </h2>
+                        <p>
+                           Technically, most browsers will allow you to get away with omitting semi-colons.</p>
+                        <div>
+                           <div id="highlighter_683962" class="syntaxhighlighter noskimlinks noskimwords javascript">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                          <div class="line number2 index1 alt1">2</div>
+                                          <div class="line number3 index2 alt2">3</div>
+                                          <div class="line number4 index3 alt1">4</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="javascript keyword">var</code> <code class="javascript plain">someItem = </code><code class="javascript string">'some string'</code></div>
+                                             <div class="line number2 index1 alt1"><code class="javascript keyword">function</code> <code class="javascript plain">doSomething() {</code></div>
+                                             <div class="line number3 index2 alt2"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript keyword">return</code> <code class="javascript string">'something'</code></div>
+                                             <div class="line number4 index3 alt1"><code class="javascript plain">}</code></div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <p>
+                           Having said that, this is a very bad practice that can potentially lead to much bigger, and harder to find, issues.</p>
+                        <h4 class="nolinks">Better</h4>
+                        <div>
+                           <div id="highlighter_587207" class="syntaxhighlighter noskimlinks noskimwords javascript">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                          <div class="line number2 index1 alt1">2</div>
+                                          <div class="line number3 index2 alt2">3</div>
+                                          <div class="line number4 index3 alt1">4</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="javascript keyword">var</code> <code class="javascript plain">someItem = </code><code class="javascript string">'some string'</code><code class="javascript plain">;</code></div>
+                                             <div class="line number2 index1 alt1"><code class="javascript keyword">function</code> <code class="javascript plain">doSomething() {</code></div>
+                                             <div class="line number3 index2 alt2"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript keyword">return</code> <code class="javascript string">'something'</code><code class="javascript plain">;</code></div>
+                                             <div class="line number4 index3 alt1"><code class="javascript plain">}</code></div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <hr>
+                        <h2 class="nolinks">
+                           <span class="sectionnum">18.</span> "For in" Statements </h2>
+                        <p>
+                           When looping through items in an object, you might find that you'll also retrieve method functions as well. In order to work around this, always wrap your code in an if statement which filters the information</p>
+                        <div>
+                           <div id="highlighter_388801" class="syntaxhighlighter noskimlinks noskimwords javascript">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                          <div class="line number2 index1 alt1">2</div>
+                                          <div class="line number3 index2 alt2">3</div>
+                                          <div class="line number4 index3 alt1">4</div>
+                                          <div class="line number5 index4 alt2">5</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="javascript keyword">for</code><code class="javascript plain">(key </code><code class="javascript keyword">in</code> <code class="javascript plain">object) {</code></div>
+                                             <div class="line number2 index1 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;</code><code class="javascript keyword">if</code><code class="javascript plain">(object.hasOwnProperty(key)) {</code></div>
+                                             <div class="line number3 index2 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">...then </code><code class="javascript keyword">do</code> <code class="javascript plain">something...</code></div>
+                                             <div class="line number4 index3 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">}</code></div>
+                                             <div class="line number5 index4 alt2"><code class="javascript plain">}</code></div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <p><em>As referenced from JavaScript: The Good Parts, by Douglas Crockford. </em></p>
+                        <hr>
+                        <h2 class="nolinks">
+                           <span class="sectionnum">19.</span> Use Firebug's "Timer" Feature to Optimize Your Code </h2>
+                        <p>
+                           Need a quick and easy way to determine how long an operation takes? Use Firebug's "timer" feature to log the results.</p>
+                        <div>
+                           <div id="highlighter_314870" class="syntaxhighlighter noskimlinks noskimwords javascript">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                          <div class="line number2 index1 alt1">2</div>
+                                          <div class="line number3 index2 alt2">3</div>
+                                          <div class="line number4 index3 alt1">4</div>
+                                          <div class="line number5 index4 alt2">5</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="javascript keyword">function</code> <code class="javascript plain">TimeTracker(){</code></div>
+                                             <div class="line number2 index1 alt1"><code class="javascript spaces">&nbsp;</code><code class="javascript plain">console.time(</code><code class="javascript string">"MyTimer"</code><code class="javascript plain">);</code></div>
+                                             <div class="line number3 index2 alt2"><code class="javascript spaces">&nbsp;</code><code class="javascript keyword">for</code><code class="javascript plain">(x=5000; x &gt; 0; x--){}</code></div>
+                                             <div class="line number4 index3 alt1"><code class="javascript spaces">&nbsp;</code><code class="javascript plain">console.timeEnd(</code><code class="javascript string">"MyTimer"</code><code class="javascript plain">);</code></div>
+                                             <div class="line number5 index4 alt2"><code class="javascript plain">}</code></div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <hr>
+                        <h2 class="nolinks">
+                           <span class="sectionnum">20.</span> Read, Read, Read... </h2>
+                        <p>While I'm a huge fan of web development blogs (like this one!), there really isn't a substitute for a book when grabbing some lunch, or just before you go to bed. Always keep a web development book on your bedside table. Here are
+                           some of my JavaScript favorites. </p>
+                        <ul>
+                           <li><a href="http://www.packtpub.com/object-oriented-javascript-applications-libraries/book" target="_blank">Object-Oriented JavaScript</a></li>
+                           <li><a href="http://oreilly.com/catalog/9780596517748/" target="_blank">JavaScript: The Good Parts</a></li>
+                           <li><a href="http://oreilly.com/catalog/9780596527464/" target="_blank">Learning JavaScript</a></li>
+                        </ul>
+                        <p>
+                           Read them...multiple times. I still do!</p>
+                        <hr>
+                        <h2 class="nolinks">
+                           <span class="sectionnum">21.</span> Self-Executing Functions </h2>
+                        <p>
+                           Rather than calling a function, it's quite simple to make a function run automatically when a page loads, or a parent function is called. Simply wrap your function in parenthesis, and then append an additional set, which essentially calls the function.</p>
+                        <div>
+                           <div id="highlighter_675905" class="syntaxhighlighter noskimlinks noskimwords javascript">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                          <div class="line number2 index1 alt1">2</div>
+                                          <div class="line number3 index2 alt2">3</div>
+                                          <div class="line number4 index3 alt1">4</div>
+                                          <div class="line number5 index4 alt2">5</div>
+                                          <div class="line number6 index5 alt1">6</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="javascript plain">(</code><code class="javascript keyword">function</code> <code class="javascript plain">doSomething() {</code></div>
+                                             <div class="line number2 index1 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;</code><code class="javascript keyword">return</code> <code class="javascript plain">{</code></div>
+                                             <div class="line number3 index2 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">name: </code><code class="javascript string">'jeff'</code><code class="javascript plain">,</code></div>
+                                             <div class="line number4 index3 alt1"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">lastName: </code><code class="javascript string">'way'</code></div>
+                                             <div class="line number5 index4 alt2"><code class="javascript spaces">&nbsp;&nbsp;&nbsp;</code><code class="javascript plain">};</code></div>
+                                             <div class="line number6 index5 alt1"><code class="javascript plain">})();</code></div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <hr>
+                        <h2 class="nolinks">
+                           <span class="sectionnum">22.</span> Raw JavaScript Can Always Be Quicker Than Using a Library </h2>
+                        <p>
+                           JavaScript libraries, such as jQuery and Mootools, can save you an enormous amount of time when coding -- especially with AJAX operations. Having said that, always keep in mind that a library can never be as fast as raw JavaScript (assuming you code correctly).</p>
+                        <p>jQuery's "each" method is great for looping, but using a native "for" statement will always be an ounce quicker.</p>
+                        <hr>
+                        <h2 class="nolinks">
+                           <span class="sectionnum">23.</span> Crockford's JSON.Parse </h2>
+                        <p>
+                           Although JavaScript 2 should have a built-in JSON parser, as of this writing, we still need to implement our own. Douglas Crockford, the creator of JSON, has already created a parser that you can use. It can be downloaded
+                           <a
+                              href="https://github.com/douglascrockford/JSON-js" target="_blank">HERE</a>.</p>
+                        <p>
+                           Simply by importing the script, you'll gain access to a new JSON global object, which can then be used to parse your .json file.</p>
+                        <div>
+                           <div id="highlighter_19397" class="syntaxhighlighter noskimlinks noskimwords javascript">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                          <div class="line number2 index1 alt1">2</div>
+                                          <div class="line number3 index2 alt2">3</div>
+                                          <div class="line number4 index3 alt1">4</div>
+                                          <div class="line number5 index4 alt2">5</div>
+                                          <div class="line number6 index5 alt1">6</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="javascript keyword">var</code> <code class="javascript plain">response = JSON.parse(xhr.responseText);</code></div>
+                                             <div class="line number2 index1 alt1">&nbsp;</div>
+                                             <div class="line number3 index2 alt2"><code class="javascript keyword">var</code> <code class="javascript plain">container = document.getElementById(</code><code class="javascript string">'container'</code><code class="javascript plain">);</code></div>
+                                             <div class="line number4 index3 alt1"><code class="javascript keyword">for</code><code class="javascript plain">(</code><code class="javascript keyword">var</code> <code class="javascript plain">i = 0, len = response.length; i &lt; len; i++) {</code></div>
+                                             <div class="line number5 index4 alt2"><code class="javascript spaces">&nbsp;&nbsp;</code><code class="javascript plain">container.innerHTML += </code><code class="javascript string">'&lt;li&gt;'</code> <code class="javascript plain">+ response[i].name + </code>
+                                                <code class="javascript string">' : '</code> <code class="javascript plain">+ response[i].email + </code><code class="javascript string">'&lt;/li&gt;'</code><code class="javascript plain">;</code></div>
+                                             <div class="line number6 index5 alt1"><code class="javascript plain">}</code></div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <hr>
+                        <h2 class="nolinks">
+                           <span class="sectionnum">24.</span> Remove "Language" </h2>
+                        <p>
+                           Years ago, it wasn't uncommon to find the "language" attribute within script tags.</p>
+                        <div>
+                           <div id="highlighter_684817" class="syntaxhighlighter noskimlinks noskimwords javascript">
+                              <table border="0" cellpadding="0" cellspacing="0">
+                                 <tbody>
+                                    <tr>
+                                       <td class="gutter">
+                                          <div class="line number1 index0 alt2">1</div>
+                                          <div class="line number2 index1 alt1">2</div>
+                                          <div class="line number3 index2 alt2">3</div>
+                                       </td>
+                                       <td class="code">
+                                          <div class="container">
+                                             <div class="line number1 index0 alt2"><code class="javascript plain">&lt;script type=</code><code class="javascript string">"text/javascript"</code> <code class="javascript plain">language=</code><code class="javascript string">"javascript"</code>
+                                                <code
+                                                   class="javascript plain">&gt;</code>
+                                             </div>
+                                             <div class="line number2 index1 alt1"><code class="javascript plain">...</code></div>
+                                             <div class="line number3 index2 alt2"><code class="javascript plain">&lt;/script&gt;</code></div>
+                                          </div>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <p>
+                           However, this attribute has long since been deprecated; so leave it out.</p>
+                        <hr>
+                        <h2 class="nolinks">That's All, Folks</h2>
+                        <p>So there you have it; twenty-four essential tips for beginning JavaScripters. Let me know your quick tips! Thanks for reading.</p>
+                        <p>
+                           Follow me on <a href="http://www.twitter.com/kcak11" target="_blank">Twitter</a>, or visit my website <a href="https://www.ashishkumarkc.com" target="_akweb">ashishkumarkc.com</a> for more daily web development news and articles.
+                        </p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </article>
+      </main>
+   </div>
+   <script>
+      [].forEach.call(document.querySelectorAll("span.sectionnum"), function(elem, idx) {
+         elem.innerHTML = (idx + 1) + ".";
+      });
+   </script>
+   <!-- Global Site Tag (gtag.js) - Google Analytics -->
+   <script async src="https://www.googletagmanager.com/gtag/js?id=G-1VB4Y7BM1Y"></script>
+   <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+         dataLayer.push(arguments)
+      };
+      gtag('js', new Date());
+      gtag('config', 'G-1VB4Y7BM1Y');
+   </script>
+
+</body>
+
+</html>
+<!-- vTag: TY3MjMxMzcwODAwMzY -->
